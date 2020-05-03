@@ -1,4 +1,4 @@
-package arrays;
+package topIntQuestions;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import trees.binary.examples.BinaryTreeNode;
+
 /**
  * Given a binary tree, return the inorder traversal of its nodes' values.
  * 
@@ -32,6 +34,14 @@ public class InorderTraversal {
 			}
 		}
 		return traversal;
+	}
+
+	public static void inorder(BinaryTreeNode<Integer> root) {
+		if (root == null)
+			return;
+		inorder(root.getLeft());
+		System.out.println(root.getData());
+		inorder(root.getRight());
 	}
 
 	public static void main(String[] args) {

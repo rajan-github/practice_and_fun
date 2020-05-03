@@ -28,14 +28,11 @@ public class Problem27 {
 		if (root1 == null || root2 == null)
 			return;
 		else {
-			BinaryTreeNode<Integer> temp = root1.getLeft();
-			root1.setLeft(root2.getRight());
-			root2.setRight(temp);
-			temp = root1.getRight();
-			root1.setRight(root2.getLeft());
-			root2.setLeft(temp);
 			treeMirror(root1.getLeft(), root1.getRight());
 			treeMirror(root2.getLeft(), root2.getRight());
+			BinaryTreeNode<Integer> temp = root2.getLeft();
+			root2.setLeft(root2.getRight());
+			root2.setRight(temp);
 		}
 	}
 
@@ -43,11 +40,9 @@ public class Problem27 {
 		BinaryTree<Integer> tree = new BinaryTree<>();
 		tree.insert(1);
 		tree.insert(2);
-		tree.insert(2);
 		tree.insert(3);
 		tree.insert(4);
 		tree.insert(5);
-		tree.insert(6);
 		List<BinaryTreeNode<Integer>> levelOrder = tree.levelOrder();
 		for (BinaryTreeNode<Integer> node : levelOrder)
 			System.out.print(node.getData());
