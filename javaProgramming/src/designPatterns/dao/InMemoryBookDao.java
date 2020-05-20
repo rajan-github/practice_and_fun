@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryBookDao {
+public class InMemoryBookDao implements BookDao {
 	private static Map<String, Book> bookstore = new HashMap<>();
 
 	public Collection<Book> findAllBooks() {
@@ -21,5 +21,10 @@ public class InMemoryBookDao {
 
 	public void delete(Book book) {
 		bookstore.remove(book.getIsbn());
+	}
+
+	@Override
+	public void update(Book book) {
+//update the book		
 	}
 }
