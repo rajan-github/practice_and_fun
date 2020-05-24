@@ -14,17 +14,18 @@ public class Graphs {
 	/*
 	 * Insert an edge (x,y).
 	 */
-	public static void insertEdge(Graph g, int x, int y, boolean directed) {
+	public static void insertEdge(Graph g, int x, int y, int weight, boolean directed) {
 		if (g != null) {
 			EdgeNode p = new EdgeNode();
 			p.setY(y);
 			p.setNext(g.getEdges()[x]);
+			p.setWeight(weight);
 			g.getEdges()[x] = p;
 			g.increaseDegree(x);
 			if (directed)
 				g.setNedges(g.getNedges() + 1);
 			else
-				insertEdge(g, y, x, true);
+				insertEdge(g, y, x, weight, true);
 		}
 	}
 
@@ -39,15 +40,40 @@ public class Graphs {
 	public static void readGraph(Graph g, boolean directed) {
 		int edges = 0, vertices = 0;
 		try (Scanner scanner = new Scanner(System.in)) {
-			System.out.println("Enter graph: ");
+			System.out.println("Enter graph: TotalVertices TotalEdges");
+			vertices = scanner.nextInt();
+			edges = scanner.nextInt();
+			g.setDirected(directed);
+			if (vertices > 0)
+				g.setNvertices(vertices);
+			System.out.println("Enter Edge: From To");
+			for (int i = 1; i <= edges; i++) {
+				insertEdge(g, scanner.nextInt(), scanner.nextInt(), 1, directed);
+			}
+		}
+	}
+
+	/**
+	 * Graph format consists of an initial line featuring the number of vertices and
+	 * edges in the graph, followed by a listing of the edges at one vertex pair per
+	 * line.
+	 * 
+	 * @param g
+	 * @param directed
+	 */
+	public static void readWeightedGraph(Graph g, boolean directed) {
+		int edges = 0, vertices = 0;
+		try (Scanner scanner = new Scanner(System.in)) {
+			System.out.println("Enter graph: TotalVertices TotalEdges");
 			vertices = scanner.nextInt();
 			edges = scanner.nextInt();
 			g.setDirected(directed);
 			if (vertices > 0)
 				g.setNvertices(vertices);
 
+			System.out.println("Enter Edges: From To Weight");
 			for (int i = 1; i <= edges; i++) {
-				insertEdge(g, scanner.nextInt(), scanner.nextInt(), directed);
+				insertEdge(g, scanner.nextInt(), scanner.nextInt(), scanner.nextInt(), directed);
 			}
 		}
 	}
@@ -59,7 +85,7 @@ public class Graphs {
 				EdgeNode adjacentList = g.getEdges()[v];
 				System.out.print(v + ": ");
 				while (adjacentList != null) {
-					System.out.print(adjacentList.getY() + "->");
+					System.out.print(adjacentList.getY() + ": " + adjacentList.getWeight() + "->");
 					adjacentList = adjacentList.getNext();
 				}
 				System.out.println();
@@ -78,7 +104,7 @@ public class Graphs {
 			for (int i = 1; i <= vertices; i++) {
 				EdgeNode adjacencyList = adjacentArray[i];
 				while (adjacencyList != null) {
-					insertEdge(transpose, adjacencyList.getY(), i, isDirectred);
+					insertEdge(transpose, adjacencyList.getY(), i, adjacencyList.getWeight(), isDirectred);
 					adjacencyList = adjacencyList.getNext();
 				}
 			}
@@ -104,11 +130,11 @@ public class Graphs {
 			for (int v = 1; v <= vertices; v++) {
 				EdgeNode adjacencyList = adjacencyArray[v];
 				while (adjacencyList != null) {
-					insertEdge(square, v, adjacencyList.getY(), true);
+					insertEdge(square, v, adjacencyList.getY(), adjacencyList.getWeight(), true);
 					EdgeNode adjadjList = adjacencyArray[adjacencyList.getY()];
 					while (adjadjList != null) {
 						if (v != adjadjList.getY())
-							insertEdge(square, v, adjadjList.getY(), true);
+							insertEdge(square, v, adjadjList.getY(), adjacencyList.getWeight(), true);
 						adjadjList = adjadjList.getNext();
 					}
 					adjacencyList = adjacencyList.getNext();

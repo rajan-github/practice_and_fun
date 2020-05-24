@@ -8,7 +8,7 @@ package graph;
  *
  */
 
-public class EdgeNode {
+public class EdgeNode implements Comparable<EdgeNode> {
 	/*
 	 * vertex identifier.
 	 */
@@ -69,5 +69,25 @@ public class EdgeNode {
 		if (y != other.y)
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(EdgeNode other) {
+		if (this.getWeight() > other.getWeight())
+			return 1;
+		else if (this.getWeight() < other.getWeight())
+			return -1;
+		return 0;
+	}
+
+	/**
+	 * this method returns the clone of the edge object.
+	 */
+	public EdgeNode clone() {
+		EdgeNode edge = new EdgeNode();
+		edge.setNext(this.next);
+		edge.setWeight(weight);
+		edge.setY(y);
+		return edge;
 	}
 }
