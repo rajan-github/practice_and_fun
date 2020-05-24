@@ -1,5 +1,12 @@
 eclipse.preferences.version=1
+encoding//src/arrays/PeakElement.java=UTF-8
 encoding//src/backtracking/exercise/Derangement.java=UTF-8
 encoding//src/backtracking/practice/LittleArtem.java=UTF-8
+encoding//src/dynamicProgramming/CountUniqeDigitNumbers.java=UTF-8
 encoding//src/dynamicProgramming/MaximumMonotoneSubsequence.java=UTF-8
 encoding//src/dynamicProgramming/ParsingAString.java=UTF-8
+encoding//src/dynamicProgramming/practice/CountBits.java=UTF-8
+encoding//src/graph/DFS.java=UTF-8
+encoding//src/graph/NumberOfPaths.java=UTF-8
+encoding//src/skiena/sorting/exercises/Problem2.java=UTF-8
+encoding//src/strings/DeleteKDigits.java=UTF-8
