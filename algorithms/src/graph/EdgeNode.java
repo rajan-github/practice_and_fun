@@ -10,18 +10,27 @@ package graph;
 
 public class EdgeNode implements Comparable<EdgeNode> {
 	/*
-	 * vertex identifier.
+	 * vertex identifier. Edge x->y.
 	 */
 	private int y;
 	private int weight;
 	private EdgeNode next;
+	private int x;
 
 	public int getY() {
 		return y;
 	}
 
+	public int getX() {
+		return x;
+	}
+
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public void setX(int x) {
+		this.x = x;
 	}
 
 	public int getWeight() {
@@ -46,6 +55,7 @@ public class EdgeNode implements Comparable<EdgeNode> {
 		int result = 1;
 		result = prime * result + ((next == null) ? 0 : next.hashCode());
 		result = prime * result + weight;
+		result = prime * result + x;
 		result = prime * result + y;
 		return result;
 	}
@@ -65,6 +75,8 @@ public class EdgeNode implements Comparable<EdgeNode> {
 		} else if (!next.equals(other.next))
 			return false;
 		if (weight != other.weight)
+			return false;
+		if (x != other.x)
 			return false;
 		if (y != other.y)
 			return false;
@@ -88,6 +100,7 @@ public class EdgeNode implements Comparable<EdgeNode> {
 		edge.setNext(this.next);
 		edge.setWeight(weight);
 		edge.setY(y);
+		edge.setX(x);
 		return edge;
 	}
 }

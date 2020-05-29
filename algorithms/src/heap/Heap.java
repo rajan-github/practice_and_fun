@@ -1,6 +1,8 @@
 package heap;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This is implementation of the heap datastructure.
@@ -12,6 +14,7 @@ public class Heap<T extends Comparable<T>> {
 	private T[] data;
 	private int heapsize;
 	private int capacity;
+	private Map<T, Integer> indexMap;
 
 	@SuppressWarnings({ "unchecked" })
 	public Heap(int capacity) {
@@ -20,9 +23,11 @@ public class Heap<T extends Comparable<T>> {
 		this.capacity = capacity;
 		data = (T[]) new Comparable[capacity];
 		this.heapsize = 0;
+		this.indexMap = new HashMap<>();
 	}
 
 	public void insert(T item) {
+		this.indexMap.put(item, heapsize);
 		this.data[heapsize++] = item;
 	}
 
@@ -56,6 +61,16 @@ public class Heap<T extends Comparable<T>> {
 
 	public int getCapacity() {
 		return capacity;
+	}
+
+	public int getIndex(T item) {
+		if (indexMap.containsKey(item))
+			return indexMap.get(item);
+		return -1;
+	}
+
+	public void setIndex(T item, int index) {
+		indexMap.put(item, index);
 	}
 
 	@Override

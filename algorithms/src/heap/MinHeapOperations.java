@@ -9,6 +9,7 @@ package heap;
  * @param <T>
  */
 public class MinHeapOperations<T extends Comparable<T>> {
+
 	private void heapify(Heap<T> heap, int index) {
 		int left = left(index), right = right(index);
 		int minimum = index, heapSize = heap.getHeapsize();
@@ -59,8 +60,11 @@ public class MinHeapOperations<T extends Comparable<T>> {
 		int heapSize = heap.getHeapsize();
 		if (i < heapSize && j < heapSize) {
 			T temp = heap.getItem(i);
+			heap.setIndex(temp, j);
+			heap.setIndex(heap.getItem(j), i);
 			heap.setItem(i, heap.getItem(j));
 			heap.setItem(j, temp);
+
 		}
 	}
 
@@ -110,14 +114,24 @@ public class MinHeapOperations<T extends Comparable<T>> {
 	public static void main(String[] args) {
 		MinHeapOperations<Integer> minHeapOperations = new MinHeapOperations<>();
 		Heap<Integer> heap = minHeapOperations.makeHeap(new Integer[] { 8, 7, 6, 5, 4, 3, 2, 1 });
-		minHeapOperations.display(heap);
-		int heapSize = heap.getHeapsize();
-		for (int i = 0; i < heapSize; i++)
-			System.out.println("extracted: " + minHeapOperations.extractMin(heap));
-		for (int i = 0; i < heapSize; i++)
-			minHeapOperations.insert(heap, heapSize - i);
-		minHeapOperations.display(heap);
-		minHeapOperations.decreaseKey(heap, heapSize - 1, -1);
-		minHeapOperations.display(heap);
+
+		System.out.println(heap.getIndex(8));
+		System.out.println(heap.getIndex(7));
+		System.out.println(heap.getIndex(6));
+		System.out.println(heap.getIndex(5));
+		System.out.println(heap.getIndex(4));
+		System.out.println(heap.getIndex(3));
+		System.out.println(heap.getIndex(2));
+		System.out.println(heap.getIndex(1));
+
+//		minHeapOperations.display(heap);
+//		int heapSize = heap.getHeapsize();
+//		for (int i = 0; i < heapSize; i++)
+//			System.out.println("extracted: " + minHeapOperations.extractMin(heap));
+//		for (int i = 0; i < heapSize; i++)
+//			minHeapOperations.insert(heap, heapSize - i);
+//		minHeapOperations.display(heap);
+//		minHeapOperations.decreaseKey(heap, heapSize - 1, -1);
+//		minHeapOperations.display(heap);
 	}
 }

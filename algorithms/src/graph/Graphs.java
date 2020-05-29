@@ -20,6 +20,7 @@ public class Graphs {
 			p.setY(y);
 			p.setNext(g.getEdges()[x]);
 			p.setWeight(weight);
+			p.setX(x);
 			g.getEdges()[x] = p;
 			g.increaseDegree(x);
 			if (directed)
