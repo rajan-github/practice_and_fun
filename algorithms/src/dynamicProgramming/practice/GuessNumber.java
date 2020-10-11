@@ -15,6 +15,7 @@ package dynamicProgramming.practice;
  *
  */
 public class GuessNumber {
+
 	public static int getMoneyAmount(int n) {
 		if (n == 1)
 			return 0;

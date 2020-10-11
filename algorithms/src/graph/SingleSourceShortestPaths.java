@@ -171,16 +171,16 @@ public class SingleSourceShortestPaths {
 		else
 			System.out.println("Path has reachable negative weight cycle.");
 
-		shortestPathTree = shortestPathInDAG(g);
-		if (pathExist)
-			CommonMethods.display(shortestPathTree);
-		else
-			System.out.println("Path has reachable negative weight cycle.");
-
-		shortestPathTree = dijkstraShortestPath(g, 1);
-		if (pathExist)
-			CommonMethods.display(shortestPathTree);
-		else
-			System.out.println("Path has reachable negative weight cycle.");
+//		shortestPathTree = shortestPathInDAG(g);
+//		if (pathExist)
+//			CommonMethods.display(shortestPathTree);
+//		else
+//			System.out.println("Path has reachable negative weight cycle.");
+//
+//		shortestPathTree = dijkstraShortestPath(g, 1);
+//		if (pathExist)
+//			CommonMethods.display(shortestPathTree);
+//		else
+//			System.out.println("Path has reachable negative weight cycle.");
 	}
 }
